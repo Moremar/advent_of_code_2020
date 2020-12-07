@@ -3,20 +3,18 @@ import re
 
 def solve(rules):
     contained_colors = {}
-    processed = set()
 
-    while len(processed) < len(rules):
+    while len(contained_colors) < len(rules):
         for color in rules:
             # skip the rule if already processed
-            if color in processed:
+            if color in contained_colors:
                 continue
             # process the rule if it is an empty bag
             if not len(rules[color]):
                 contained_colors[color] = set()
-                processed.add(color)
                 continue
             # skip the rule if all rules of the contained bags are not processed yet
-            if not all([item_color in processed for (_, item_color) in rules[color]]):
+            if not all([item_color in contained_colors for (_, item_color) in rules[color]]):
                 continue
             # process the rule if all rules of contained bags are processed
             colors = set()
@@ -24,7 +22,6 @@ def solve(rules):
                 colors.add(item_color)
                 colors = colors.union(contained_colors[item_color])
             contained_colors[color] = colors
-            processed.add(color)
 
     return len([x for x in contained_colors if 'shiny gold' in contained_colors[x]])
 
