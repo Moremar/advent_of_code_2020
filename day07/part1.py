@@ -31,9 +31,9 @@ def parse(file_name):
     with open(file_name, 'r') as f:
         for line in map(str.strip, f.readlines()):
             content = []
-            color, items = re.match(r'^([a-z ]+) bags contain ([0-9a-z ,]+)$', line[:-1]).groups()
+            color, items = re.match(r'([a-z ]+) bags contain ([0-9a-z ,]+)$', line[:-1]).groups()
             for item in items.split(', '):
-                match = re.match(r'^([0-9]+) ([a-z ]+) bag', item)
+                match = re.match(r'([0-9]+) ([a-z ]+) bag', item)
                 if match:
                     quantity, item_color = match.groups()
                     content.append((int(quantity), item_color))
