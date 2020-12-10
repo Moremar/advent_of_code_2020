@@ -10,21 +10,16 @@ from day10.part1 import parse, get_diff_sequence
 # and multiply them together to get the total number of combinations.
 
 
-def count_combinations(size, diff_from_prev):
-    """Count the number of combinations for a sequence of 1 jolt differences of a given size"""
-
-    # if less than 2 values with 1 jolt difference, only 1 possibility
+def count_combinations(size, jolt_diff):
     if size < 2:
         return 1
 
     # if we reached 3 jolts difference with the previous value, we must include this value
-    if diff_from_prev == 3:
+    if jolt_diff == 3:
         return count_combinations(size-1, 1)
 
-    # the number of combinations is the sum of :
-    #  - all combinations including the current value
-    #  - all combinations excluding the current value
-    return count_combinations(size-1, 1) + count_combinations(size-1, diff_from_prev+1)
+    # include or not the current value
+    return count_combinations(size-1, 1) + count_combinations(size-1, jolt_diff+1)
 
 
 def solve(jolts):
