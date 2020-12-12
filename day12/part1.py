@@ -19,17 +19,17 @@ def solve(instructions):
     for (letter, val) in instructions:
         if letter == 'F':
             pos = add(pos, facing, val)
-        if letter == 'N':
+        elif letter == 'N':
             pos = add(pos, NORTH, val)
-        if letter == 'S':
+        elif letter == 'S':
             pos = add(pos, SOUTH, val)
-        if letter == 'W':
+        elif letter == 'W':
             pos = add(pos, WEST, val)
-        if letter == 'E':
+        elif letter == 'E':
             pos = add(pos, EAST, val)
-        if letter == 'R':
+        elif letter == 'R':
             facing = turn_right(facing, val // 90)
-        if letter == 'L':
+        elif letter == 'L':
             facing = turn_right(facing, 4 - val // 90)
     return abs(pos[0]) + abs(pos[1])
 
