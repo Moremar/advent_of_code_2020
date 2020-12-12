@@ -36,12 +36,9 @@ def solve(instructions):
 
 def parse(file_name):
     instructions = []
-    possibles = set()
     with open(file_name, 'r') as f:
         for line in f.readlines():
             letter, val = re.match(r'([SNEWLRF])(\d+)$', line.strip()).groups()
-            if letter in 'LR':
-                possibles.add(val)
             instructions.append((letter, int(val)))
     return instructions
 
