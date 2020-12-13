@@ -1,8 +1,8 @@
 def solve(data):
-    delay, buses = data
+    earliest, buses = data
     best_bus, min_time_to_wait = buses[0][1], buses[0][1]
     for (_, bus_id) in buses:
-        time_to_wait = ((delay // bus_id) + 1) * bus_id - delay
+        time_to_wait = ((earliest // bus_id) + 1) * bus_id - earliest
         if time_to_wait < min_time_to_wait:
             best_bus = bus_id
             min_time_to_wait = time_to_wait
